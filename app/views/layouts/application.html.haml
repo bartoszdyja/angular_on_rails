@@ -1,0 +1,26 @@
+!!! 5
+%html(ng-app='hello')
+  %head
+    %title Hello App
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true 
+    = csrf_meta_tags 
+  %body(ng-controller='LoginCtrl') 
+    %nav.navbar.navbar-default{"bs-navbar" => "", :role => "navigation"}
+      .navbar-header
+        %a.navbar-brand{href: "/"} Angular Rails
+      %ul.nav.navbar-nav
+        %li
+          %a(href="") Link 1
+      %ul.nav.navbar-nav.navbar-right(ng-show='user.signedIn') 
+        %li
+          %a(href="") {{user.uid}}
+        %li
+          %a(ng-click='logout()' href="") Logout 
+      %ul.nav.navbar-nav.navbar-right(ng-hide='user.signedIn') 
+        %li
+          %a(href="" ng-click='signViaToken()') Sign In
+        %li
+          %a(href="#") Sign Up 
+             
+    =yield
